@@ -123,7 +123,7 @@ Rayfield.Enabled = false
 -- Tasks
 local spawn = task.spawn
 
-Rayfield = CoreGui
+Rayfield.Parent = CoreGui
 
 --Object Variables
 
