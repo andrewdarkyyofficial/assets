@@ -112,9 +112,6 @@ local UserInputService = cloneref(game:GetService("UserInputService"))
 local TweenService = cloneref(game:GetService("TweenService"))
 local HttpService = cloneref(game:GetService("HttpService"))
 local RunService = cloneref(game:GetService("RunService"))
-local Players = cloneref(game:GetService("Players"))
-local CoreGui = cloneref(game:GetService("CoreGui"))
-local LocalPlayer = game:GetService('Players').LocalPlayer
 local TextService = cloneref(game:GetService("TextService"))
 -- Interface Management
 local Rayfield = game:GetObjects("rbxassetid://11637506633")[1]
@@ -123,10 +120,11 @@ Rayfield.Enabled = false
 -- Tasks
 local spawn = task.spawn
 
-Rayfield.Parent = CoreGui
+Rayfield.Parent = game:GetService("CoreGui")
 
 --Object Variables
 
+local mouse = game:GetService("Players").LocalPlayer:GetMouse()
 local Camera = workspace.CurrentCamera
 local Main = Rayfield.Main
 local Topbar = Main.Topbar
@@ -2811,7 +2809,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 			Main.ImageTransparency = 1
 			Background.BackgroundTransparency = 1
 			local opened  = false 
-			local mouse = game.Players.LocalPlayer:GetMouse()
 			Main.Image = "http://www.roblox.com/asset/?id=11415645739"
 			local mainDragging = false 
 			local sliderDragging = false 
