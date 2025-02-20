@@ -108,14 +108,14 @@ local RayfieldLibrary = {
 
 -- Services
 
-local UserInputService = game:GetService("UserInputService")
-local TweenService = game:GetService("TweenService")
-local HttpService = game:GetService("HttpService")
-local RunService = game:GetService("RunService")
-local Players = game:GetService("Players")
-local CoreGui = game:GetService("CoreGui")
+local UserInputService = cloneref(game:GetService("UserInputService"))
+local TweenService = cloneref(game:GetService("TweenService"))
+local HttpService = cloneref(game:GetService("HttpService"))
+local RunService = cloneref(game:GetService("RunService"))
+local Players = cloneref(game:GetService("Players"))
+local CoreGui = cloneref(game:GetService("CoreGui"))
 local LocalPlayer = game:GetService('Players').LocalPlayer
-local TextService = game:GetService("TextService") 
+local TextService = cloneref(game:GetService("TextService"))
 -- Interface Management
 local Rayfield = game:GetObjects("rbxassetid://11637506633")[1]
 
@@ -123,28 +123,7 @@ Rayfield.Enabled = false
 -- Tasks
 local spawn = task.spawn
 
-pcall(function()
-_G.LastRayField.Name = 'Old Arrayfield'
-_G.LastRayField.Enabled = false
-end)
-local ParentObject = function(Gui)
-    local success, failure = pcall(function()
-        if get_hidden_gui or gethui then
-            local hiddenUI = get_hidden_gui or gethui
-            Gui.Parent = hiddenUI()
-        elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
-            syn.protect_gui(Gui)
-            Gui.Parent = CoreGui
-        elseif CoreGui then
-            Gui.Parent = CoreGui
-        end
-    end)
-    if not success and failure then
-        Gui.Parent = LocalPlayer:FindFirstChildWhichIsA("PlayerGui")
-    end
-	_G.LastRayField = Rayfield
-end
-ParentObject(Rayfield)
+Rayfield = CoreGui
 
 --Object Variables
 
@@ -1322,8 +1301,6 @@ function RayfieldLibrary:CreateWindow(Settings)
 
 		TopTabButton.Interact.MouseButton1Click:Connect(Pick)
 		SideTabButton.Interact.MouseButton1Click:Connect(Pick)
-
-    Tab.Pick = Pick
 
 		-- Button
 		function Tab:CreateButton(ButtonSettings)
