@@ -1541,7 +1541,6 @@ end
 
 
 function RayfieldLibrary:CreateWindow(Settings)
-	print('creating window')
 	if Rayfield:FindFirstChild('Loading') then
 		if getgenv and not getgenv().rayfieldCached then
 			Rayfield.Enabled = true
